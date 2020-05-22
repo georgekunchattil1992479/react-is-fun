@@ -29,7 +29,7 @@ const NotHiring = () =>
 class Library extends React.Component { //JSX class implementation
     state = {open:true,
              freeBookmark: true,
-             hiring: true
+             hiring: false
    }
    
    toggleOPenClosed=() => {
