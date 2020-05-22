@@ -64,11 +64,11 @@ class Library extends React.Component { //JSX class implementation
             : <div>
                 {this.state.data.map(product=> {
                    return (
-                      <div>
+                      <div key={product.id}> {/* Comment: --> add key as product id*/}
                          <h3>Library Product of the Week</h3>
                          
-                         <h4>{product.name}</h4>  {/* --> fetch name from API [.json] */}
-                         <img src={product.image} height={100}/>
+                         <h4>{product.name}</h4>  {/* Comment: --> fetch name from API [.json] */}
+                         <img alt={product.name} src={product.image} height={100}/>
                       </div>
                    )
                 })}
