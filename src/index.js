@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-/* //Library App
+//Library App
     let bookList = [
-   {"title": "Hunger", "author": "Roaxane Gay" ,"pages": 320},
+   {"title": "Hunger", "author": "Roaxane Gay" },
    {"title": "The Sun Also Rises", "author": "Ernest Hemingway", "pages": 260},
    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304}
 ]
-const Book =({title, author, pages, freeBookmark}) => {
+ //const Book creates default value to bookList when any value is not mentioned
+const Book =({title="No Title Provided", author="No Author", pages=0, freeBookmark}) => {
    return (
       <section>
          <h2>{title}</h2>
@@ -28,6 +29,13 @@ const NotHiring = () =>
         <p> The libray is not hiring. Check back later for more info</p>
      </div>
 class Library extends React.Component { //JSX class implementation
+
+   static defaultProps = {
+      books: [
+         {"title": "Tahoe Tales", "author": "Chet Whitley", "pages": 1000}
+      ]
+   }
+
     state = {open:true,
              freeBookmark: true,
              hiring: true,
@@ -65,7 +73,7 @@ class Library extends React.Component { //JSX class implementation
             : <div>
                 {this.state.data.map(product=> {
                    return (
-                      <div key={product.id}> {/* Comment: --> add key as product id*//* }
+                      <div key={product.id}> {/* Comment: --> add key as product id*/ }
                          <h3>Library Product of the Week</h3>
                          
                          <h4>{product.name}</h4> 
@@ -89,34 +97,10 @@ class Library extends React.Component { //JSX class implementation
       )
    }
 }  
-*/
 
-class FavouriteColorForm extends React.Component {
-   state = { value: ''}
-
-   newColor = e =>
-      this.setState({ value: e.target.value })
-
-   submit =e => {
-      console.log('New Color: ${this.state.value}')
-      e.preventDefault()
-   }
-   render () {
-      return (
-         <form onSubmit={this.submit}>
-           <label>Fourite Color:
-              <input type="color"
-                     onChange={this.newColor}/>
-           </label>
-           <button>Submit</button>
-         </form>
-      )
-   }
-   
-}
 
 render(
-   <FavouriteColorForm />,
+   <Library books={bookList} />,
    document.getElementById('root') //render public/index.html
  )
 
