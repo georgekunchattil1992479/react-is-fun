@@ -36,6 +36,10 @@ class Library extends React.Component { //JSX class implementation
       console.log("The component is now mounted!")
    }
    
+   componentDidUpdate() { //componentDidUpdate() calls when click 'Change' button
+      console.log("The component just updated")
+   }
+   
    toggleOPenClosed=() => {
       this.setState(prevState => ({
          open: !prevState.open
