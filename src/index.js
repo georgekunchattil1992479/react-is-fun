@@ -29,11 +29,16 @@ const NotHiring = () =>
 class Library extends React.Component { //JSX class implementation
     state = {open:true,
              freeBookmark: true,
-             hiring: false
+             hiring: true,
+             data: [],
+             loading: false
    }
 
    componentDidMount() {
-      console.log("The component is now mounted!")
+      this.setState({loading: true})
+      fetch('https://hplussport.com/api/products/order/price/sort/asc/qty/1')
+         .then(data => data.json()) //convert data to json format
+         .then(data => this.setState({data, loading: false})) //set state of data
    }
    
    componentDidUpdate() { //componentDidUpdate() calls when click 'Change' button
@@ -54,6 +59,21 @@ class Library extends React.Component { //JSX class implementation
       return (
          <div>
             {this.state.hiring ? <Hiring/> : <NotHiring/>}
+            {this.state.loading
+            ? "loading..."
+            : <div>
+                {this.state.data.map(product=> {
+                   return (
+                      <div>
+                         <h3>Library Product of the Week</h3>
+                         
+                         <h4>{product.name}</h4>  {/* --> fetch name from API [.json] */}
+                         <img src={product.image} height={100}/>
+                      </div>
+                   )
+                })}
+             </div>
+            }
             <h1>The library is {this.state.open? 'open': 'closed'}</h1>
             <button onClick={this.toggleOPenClosed}>Change</button>
             {books.map(
