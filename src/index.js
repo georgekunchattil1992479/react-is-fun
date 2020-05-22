@@ -18,9 +18,18 @@ const Book =({title, author, pages, freeBookmark}) => {
    )
 }
 
+const Hiring = () =>
+                     <div>
+                        <p>The library is hiring. Go to www. library.com/jobs for more.</p>
+                     </div>
+const NotHiring = () =>
+     <div>
+        <p> The libray is not hiring. Check back later for more info</p>
+     </div>
 class Library extends React.Component { //JSX class implementation
     state = {open:true,
-             freeBookmark: true
+             freeBookmark: true,
+             hiring: true
    }
    
    toggleOPenClosed=() => {
@@ -36,6 +45,7 @@ class Library extends React.Component { //JSX class implementation
       
       return (
          <div>
+            {this.state.hiring ? <Hiring/> : <NotHiring/>}
             <h1>The library is {this.state.open? 'open': 'closed'}</h1>
             <button onClick={this.toggleOPenClosed}>Change</button>
             {books.map(
