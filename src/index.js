@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-let bookList = [
+/* //Library App
+    let bookList = [
    {"title": "Hunger", "author": "Roaxane Gay" ,"pages": 320},
    {"title": "The Sun Also Rises", "author": "Ernest Hemingway", "pages": 260},
    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
@@ -49,7 +50,7 @@ class Library extends React.Component { //JSX class implementation
       this.setState(prevState => ({
          open: !prevState.open
       }))
-   }
+   } 
 
    render() {
       // console.log(this.state)
@@ -64,10 +65,10 @@ class Library extends React.Component { //JSX class implementation
             : <div>
                 {this.state.data.map(product=> {
                    return (
-                      <div key={product.id}> {/* Comment: --> add key as product id*/}
+                      <div key={product.id}> {/* Comment: --> add key as product id*//* }
                          <h3>Library Product of the Week</h3>
                          
-                         <h4>{product.name}</h4>  {/* Comment: --> fetch name from API [.json] */}
+                         <h4>{product.name}</h4> 
                          <img alt={product.name} src={product.image} height={100}/>
                       </div>
                    )
@@ -87,14 +88,35 @@ class Library extends React.Component { //JSX class implementation
          </div>
       )
    }
+}  
+*/
+
+class FavouriteColorForm extends React.Component {
+   state = { value: ''}
+
+   newColor = e =>
+      this.setState({ value: e.target.value })
+
+   submit =e => {
+      console.log('New Color: ${this.state.value}')
+      e.preventDefault()
+   }
+   render () {
+      return (
+         <form onSubmit={this.submit}>
+           <label>Fourite Color:
+              <input type="color"
+                     onChange={this.newColor}/>
+           </label>
+           <button>Submit</button>
+         </form>
+      )
+   }
+   
 }
 
-
-
 render(
-   <div>
-     <Library books={bookList}/>
-   </div>,
+   <FavouriteColorForm />,
    document.getElementById('root') //render public/index.html
  )
 
