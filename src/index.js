@@ -31,6 +31,10 @@ class Library extends React.Component { //JSX class implementation
              freeBookmark: true,
              hiring: false
    }
+
+   componentDidMount() {
+      console.log("The component is now mounted!")
+   }
    
    toggleOPenClosed=() => {
       this.setState(prevState => ({
