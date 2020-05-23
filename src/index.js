@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
+import PropTypes from 'prop-types' //add npm package 'prop-type'
+
 //Library App
     let bookList = [
-   {"title": "Hunger", "author": "Roaxane Gay" },
+   {"title": "Hunger", "author": "Roaxane Gay" ,"pages": 320},
    {"title": "The Sun Also Rises", "author": "Ernest Hemingway", "pages": 260},
    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304}
@@ -98,6 +100,16 @@ class Library extends React.Component { //JSX class implementation
    }
 }  
 
+Library.propTypes = {
+   books: PropTypes.array
+}
+
+Book.propTypes = {
+   title: PropTypes.string,
+   author: PropTypes.string,
+   pages: PropTypes.number,
+   freeBookmark: PropTypes.bool
+}
 
 render(
    <Library books={bookList} />,
